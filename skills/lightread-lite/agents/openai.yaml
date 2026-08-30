@@ -1,0 +1,4 @@
+interface:
+  display_name: "LightRead Lite"
+  short_description: "Save local documents to LightRead without an MCP plugin"
+  default_prompt: "Save this document to LightRead and show me a preview."
