@@ -24,7 +24,7 @@ Public, installable skills for AI coding agents.
 | --- | --- | --- |
 | [LightRead Lite](skills/lightread-lite/SKILL.md) | Saves local text or image documents to LightRead through a same-machine browser handoff. | Node.js 18+, macOS, Linux, or Windows |
 
-LightRead Lite creates a local static preview, opens [LightRead](https://lightread.baole.space), and keeps a single-use loopback handoff alive while the browser imports the document. Authentication remains in the browser; the skill never asks for LightRead credentials.
+LightRead Lite creates a local static preview, opens [LightRead](https://lightread.baole.space), and keeps a single-use loopback handoff alive while the browser imports the document. Multiple documents use independent browser handoffs, so they can be sent together without overwriting each other. Ask for “silent mode” when you want each successful import tab to close immediately. Authentication remains in the browser; the skill never asks for LightRead credentials.
 
 ## Updates
 

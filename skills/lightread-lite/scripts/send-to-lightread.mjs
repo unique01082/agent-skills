@@ -24,10 +24,11 @@ const IMAGE_MIMES = {
 };
 
 function parseArgs(argv) {
-  const result = { importBaseUrl: 'https://lightread.baole.space', ttlMs: DEFAULT_TTL_MS, open: true };
+  const result = { importBaseUrl: 'https://lightread.baole.space', ttlMs: DEFAULT_TTL_MS, open: true, silent: false };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
     if (arg === '--no-open') result.open = false;
+    else if (arg === '--silent') result.silent = true;
     else if (arg.startsWith('--')) {
       const key = arg.slice(2);
       const value = argv[++index];
@@ -93,6 +94,7 @@ async function main() {
   const allowedOrigin = options.allowedOrigin ?? importUrl.origin;
   if (new URL(allowedOrigin).origin !== allowedOrigin) throw new Error('--allowed-origin must be an origin without a path');
   const token = randomBytes(32).toString('base64url');
+  const storageId = randomUUID();
   const metadata = { v: 1, clientRequestId: randomUUID(), title: options.title, kind: options.kind, filename, mimeType, size: bytes.length };
   const previewPath = await createPreview(metadata);
   let state = 'ready';
@@ -123,7 +125,9 @@ async function main() {
   await new Promise((resolveListen, reject) => { server.once('error', reject); server.listen(0, '127.0.0.1', resolveListen); });
   const address = server.address();
   const expiresAt = new Date(Date.now() + options.ttlMs).toISOString();
-  importUrl.pathname = '/import'; importUrl.search = ''; importUrl.hash = new URLSearchParams({ v: '1', port: String(address.port), token }).toString();
+  importUrl.pathname = '/import';
+  importUrl.search = new URLSearchParams({ handoff: storageId }).toString();
+  importUrl.hash = new URLSearchParams({ v: '1', port: String(address.port), token, ...(options.silent ? { silent: '1' } : {}) }).toString();
   process.stdout.write(`${JSON.stringify({ status: 'ready', title: metadata.title, kind: metadata.kind, size: metadata.size, previewPath, expiresAt, handoffUrl: options.open ? undefined : importUrl.toString() })}\n`);
   if (options.open) await openBrowser(importUrl.toString());
   expiry = setTimeout(() => { if (state === 'ready') { state = 'expired'; process.stdout.write(`${JSON.stringify({ status: 'expired' })}\n`); server.close(); } }, options.ttlMs);
