@@ -1,0 +1,14 @@
+{
+  "skill_name": "lightmesh-skills",
+  "evals": [
+    {"id": 1, "name": "server-graph-file", "skill": "lightmesh-graph-builder",
+     "prompt": "Map the backend in apps/server of this repo (/Users/baole/Documents/GitHub/lightmesh.baole.space) into a LightMesh graph file I can import — how requests flow through it to Postgres/MinIO, MCP and the collaboration socket. Include links to the source.",
+     "expected_output": "A valid schema-1.1 .lightmesh.json with 8-40 nodes, stable slug ids, sentence-direction edges, descriptions, vscode:// source links with line numbers, type styles.", "files": []},
+    {"id": 2, "name": "qa-journey", "skill": "lightmesh-journey-builder",
+     "prompt": "Take packages/schema/samples/task-system.json in /Users/baole/Documents/GitHub/lightmesh.baole.space and add a presentation journey for onboarding new QA engineers. Save it as a new file.",
+     "expected_output": "Same graph plus graph.journey: overview step first, 5-9 steps, 2-6 real node ids per step, audience-facing narration, file validates.", "files": ["packages/schema/samples/task-system.json"]},
+    {"id": 3, "name": "connect-clients", "skill": "lightmesh-connect",
+     "prompt": "I want to use LightMesh from the Codex CLI and from claude.ai. Give me the exact setup steps and how to check it works.",
+     "expected_output": "Correct endpoint lightmesh.baole.space/mcp, client ID for claude.ai custom connector, Codex CLI via codex mcp add --oauth-client-id + codex mcp login, verification steps.", "files": []}
+  ]
+}
