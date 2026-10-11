@@ -1,0 +1,4 @@
+interface:
+  display_name: "baole.space Logo Design"
+  short_description: "Create smooth, distinctive ecosystem SVG logos"
+  default_prompt: "Use $baole-space-logo-design to design or refine an ecosystem SVG logo and update its preview gallery."

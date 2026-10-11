@@ -1,0 +1,10 @@
+{
+  "name": "baole-space-logo-design-tools",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "pathkit-wasm": "1.0.0",
+    "svg-path-properties": "2.0.0",
+    "sharp": "0.35.5"
+  }
+}

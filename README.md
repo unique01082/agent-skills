@@ -1,5 +1,7 @@
 # Agent Skills
 
+![Agent Skills brand](docs/brand/logo.svg)
+
 Public, installable skills for AI coding agents.
 
 ## Quick start
@@ -27,6 +29,16 @@ Public, installable skills for AI coding agents.
 | [LightMesh Agent](skills/lightmesh-agent/SKILL.md) | Reads and edits LightMesh graphs safely through the MCP / WebMCP tools. | A LightMesh MCP connection |
 | [LightMesh Graph Builder](skills/lightmesh-graph-builder/SKILL.md) | Models a system, codebase or topic as a good-looking, useful LightMesh graph, with correctness and design checks. | Node.js 18+ for the check scripts |
 | [LightMesh Journey Builder](skills/lightmesh-journey-builder/SKILL.md) | Designs presentation journeys through a LightMesh graph. | — |
+
+### baole.space logo design
+
+Draw and refine smooth SVG identities using the approved Fluid — Silk construction and verification tools.
+
+```bash
+npx skills add unique01082/agent-skills --skill baole-space-logo-design
+```
+
+[Skill instructions](skills/baole-space-logo-design/SKILL.md). Requires Node.js and Python 3; install the pinned Node dependencies with `npm ci --ignore-scripts` inside the installed skill directory.
 
 ### LightMesh skills
 
